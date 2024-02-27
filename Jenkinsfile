@@ -27,8 +27,10 @@ pipeline{
                 sleep 10
                 echo "This is stage Test"
                 echo "Running in slave2 executor"
-                echo $ENV_TEST
                 '''
+                script{
+                    echo "${env.ENV_TEST}"
+                }
             }
         }
         stage('Deploy'){
