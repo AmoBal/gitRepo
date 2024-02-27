@@ -7,6 +7,7 @@ pipeline{
             }
             steps{
                 sh '''
+                sleep 10
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 '''
@@ -18,6 +19,7 @@ pipeline{
             }
             steps{
                 sh '''
+                sleep 10
                 echo "This is stage Test"
                 echo "Running in slave2 executor"
                 '''
