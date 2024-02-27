@@ -31,5 +31,19 @@ pipeline{
                 '''
             }
         }
+        stage('Deploy'){
+            agent any
+            environment{
+                ENV_DEPLOY = 'Deploy value'
+            }
+            steps{
+                sh '''
+                sleep 10
+                echo "This is stage Deploy"
+                echo "Running in random executor"
+                echo $ENV_DEPLOY
+                '''
+            }
+        }
         }
     }
