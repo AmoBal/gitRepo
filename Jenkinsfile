@@ -23,7 +23,7 @@ pipeline{
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
                 echo $PARAM_STRIN
-                exit1
+                exit 1
                 '''
                 }
             }
