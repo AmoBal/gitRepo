@@ -6,6 +6,7 @@ pipeline{
     }
     parameters{
         string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
+        booleanParam(name:'DEPLOY', defaultValue:true,description:'This is a Boolean Parameter')
     }
     stages{
         stage('Build'){
