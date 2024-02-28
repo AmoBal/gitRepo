@@ -14,7 +14,7 @@ pipeline{
             }
             steps{
                 sh '''
-                sleep 10
+                sleep 5
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
@@ -28,7 +28,7 @@ pipeline{
             }
             steps{
                 sh '''
-                sleep 10
+                sleep 5
                 echo "This is stage Test"
                 echo "Running in slave2 executor"
                 '''
@@ -45,7 +45,7 @@ pipeline{
             }
             steps{
                 sh '''
-                sleep 10
+                sleep 5
                 echo "This is stage Deploy"
                 echo "Running in random executor"
                 echo $ENV_DEPLOY
