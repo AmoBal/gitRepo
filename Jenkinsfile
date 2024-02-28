@@ -16,7 +16,7 @@ pipeline{
                 label 'slave1'
             }
             steps{
-                catchError(buildResult:'SUCCESS',stageResult:'FAILED'){
+                catchError(buildResult:'SUCCESS',stageResult:'ABORT'){
                 sh '''
                 sleep 5
                 echo "This is stage Build"
