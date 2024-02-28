@@ -7,9 +7,9 @@ pipeline{
     parameters{
         string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
     }
-    triggers{
+    /*triggers{
         cron('* 23 * * *')
-    }
+    }*/
     stages{
         stage('Build'){
             agent {
