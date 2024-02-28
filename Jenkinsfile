@@ -22,6 +22,7 @@ pipeline{
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
+                exit 1
                 '''
                 }
             }
