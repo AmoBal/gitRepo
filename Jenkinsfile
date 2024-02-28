@@ -4,6 +4,9 @@ pipeline{
         ENV_BUILD = 'Build value'
         ENV_TEST = 'Test value'
     }
+    parameters{
+        string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
+    }
     stages{
         stage('Build'){
             agent {
@@ -15,6 +18,7 @@ pipeline{
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
+                echo $PARAM_STRING
                 '''
             }
         }
@@ -30,6 +34,7 @@ pipeline{
                 '''
                 script{
                     echo "${env.ENV_TEST}"
+                    echo "${params.PARAM_STRING}"
                 }
             }
         }
