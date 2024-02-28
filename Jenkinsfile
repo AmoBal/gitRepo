@@ -16,13 +16,13 @@ pipeline{
                 label 'slave1'
             }
             steps{
-                catchError(buildResult:'SUCCESS',stageResult:'ABORT'){
+                catchError(buildResult:'SUCCESS',stageResult:'ABORTED'){
                 sh '''
                 sleep 5
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
-                echo $PARAM_STRING
+                echo $PARAM_STRIN
                 exit 1
                 '''
                 }
