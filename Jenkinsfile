@@ -16,7 +16,7 @@ pipeline{
                 label 'slave1'
             }
             steps{
-                catchError(buildResult:'SUCCESS',stageResult:'FAILED')
+                catchError(buildResult:'SUCCESS',stageResult:'FAILED'){
                 sh '''
                 sleep 5
                 echo "This is stage Build"
@@ -25,6 +25,7 @@ pipeline{
                 echo $PARAM_STRIN
                 exit1
                 '''
+                }
             }
         }
         stage('Test'){
