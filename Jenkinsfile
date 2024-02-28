@@ -22,7 +22,7 @@ pipeline{
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
-                echo $PARAM_STRIN
+                echo $PARAM_STRING
                 exit 1
                 '''
                 }
