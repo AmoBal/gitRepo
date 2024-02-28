@@ -4,10 +4,10 @@ pipeline{
         ENV_BUILD = 'Build value'
         ENV_TEST = 'Test value'
     }
-    parameters{
+    /*parameters{
         string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
     }
-    /*triggers{
+    triggers{
         cron('* 23 * * *')
     }*/
     stages{
@@ -16,16 +16,14 @@ pipeline{
                 label 'slave1'
             }
             steps{
-                //catchError(buildResult:'SUCCESS',stageResult:'FAILURE'){
+                catchError(buildResult:'SUCCESS',stageResult:'FAILURE'){
                 sh '''
                 sleep 5
                 echo "This is stage Build"
                 echo "Running in slave1 executor"
                 echo $ENV_BUILD
-                echo $PARAM_STRING
-                
                 '''
-                //}
+                }
             }
         }
         stage('Test'){
@@ -40,7 +38,6 @@ pipeline{
                 '''
                 script{
                     echo "${env.ENV_TEST}"
-                    echo "${params.PARAM_STRING}"
                 }
             }
         }
