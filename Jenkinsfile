@@ -8,7 +8,7 @@ pipeline{
         string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
     }
     triggers{
-        cron('*****')
+        cron('* * * * *')
     }
     stages{
         stage('Build'){
