@@ -1,6 +1,6 @@
 pipeline{
     agent none
-    environment{
+    /*environment{
         ENV_BUILD = 'Build value'
         ENV_TEST = 'Test value'
     }
@@ -8,12 +8,23 @@ pipeline{
         //string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
         booleanParam(name:'TESTB',defaultValue: true,description:'Toggle this value')
     }
-    /*triggers{
+    triggers{
         //cron('* 23 * * *')
         pollSCM('* * * * *')
     }*/
     stages{
-        stage('Build'){
+        stage('CREDS'){
+            steps{
+                withCredentials([usernamePassword(credentials:'A_git', usernameVariable:'USERNAME', passwordVariable:'PASS')]){
+                    echo $USERNAME $PASS
+                    sh '''
+                        echo $USERNAME $PASS
+                    '''
+                }
+            }
+        }
+
+        /*stage('Build'){
             agent {
                 label 'slave1'
             }
@@ -34,7 +45,6 @@ pipeline{
             parallel{
                 stage('Test A'){
                     agent any
-                    
                     steps{
                         sh '''
                         sleep 5
@@ -73,6 +83,6 @@ pipeline{
                 echo $ENV_DEPLOY
                 '''
             }
-        }
+        }*/
         }
     }
