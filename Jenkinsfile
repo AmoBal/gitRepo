@@ -34,9 +34,7 @@ pipeline{
                 stage('Test A'){
                     agent any
                     when{
-                        not{
-                            branch 'main'
-                        }
+                        branch 'main'
                     }
                     steps{
                         sh '''
@@ -50,7 +48,9 @@ pipeline{
                     agent any
                     when{
                         //environment name:'ENV_TEST', value:'Test B'
-                        branch 'main'
+                        not{
+                            branch 'main'
+                        }
                     }
                     steps{
                         script{
