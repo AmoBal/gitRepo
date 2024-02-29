@@ -15,7 +15,7 @@ pipeline{
     stages{
         stage('CREDS'){
             steps{
-                withCredentials([usernamePassword(credentials:'A_git', usernameVariable:'USERNAME', passwordVariable:'PASS')]){
+                withCredentials([usernamePassword(credentialsId:'A_git', usernameVariable:'USERNAME', passwordVariable:'PASS')]){
                     echo $USERNAME $PASS
                     sh '''
                         echo $USERNAME $PASS
