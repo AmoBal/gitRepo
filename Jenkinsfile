@@ -28,16 +28,20 @@ pipeline{
                 }
             }
         }
-        stage('Test'){
+        stage('Parallel Test'){
             agent{ 
             label 'slave2'
             }
+            stage('Test A'){
             steps{
                 sh '''
                 sleep 5
                 echo "This is stage Test"
                 echo "Running in slave2 executor"
                 '''
+            }
+            }
+            stage('Test B'){
                 script{
                     echo "${env.ENV_TEST}"
                 }
