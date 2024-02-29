@@ -28,14 +28,14 @@ pipeline{
                     sh 'echo "$SecretText"'
                 }
                 //To access credentials of type Secret File
-                /*withCredentials([file(credentialsId:'secretFile',variable:'FILE_PATH')]){
+                withCredentials([file(credentialsId:'secretFile',variable:'FILE_PATH')]){
                     echo "$FILE_PATH"
-                    sh 'cat $FILE_PATH'
-                }*/
+                    sh 'echo $FILE_PATH'
+                }
                 //To access credentials of type SSH with Private Key
                 withCredentials([sshUserPrivateKey(credentialsId:'jslave1',usernameVariable:'UserName',keyFileVariable:'SSHKEY')]){
-                    echo "$jslave1 $SSHKEY"
-                    sh 'echo "$jslave1 $SSHKEY"'
+                    echo "$UserName $SSHKEY"
+                    sh 'echo "$UserName $SSHKEY"'
                 }
             }
         }
