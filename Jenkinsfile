@@ -15,11 +15,27 @@ pipeline{
     stages{
         stage('CREDS'){
             steps{
+                //To access credentials of type Username and Password
                 withCredentials([usernamePassword(credentialsId:'A_git', usernameVariable:'USERNAME', passwordVariable:'PASS')]){
                     echo "$USERNAME $PASS"
                     sh '''
                         echo "$USERNAME $PASS"
                     '''
+                }
+                //To access credentials of type Secret text
+                withCredentials([string(credentialsId:'secretText',variable:'SecretText')]){
+                    echo "$SecretText"
+                    sh 'cat $SecretText'
+                }
+                //To access credentials of type Secret File
+                withCredentials([file(credentialsId:'secretFile',variable:'FilePath')]){
+                    echo "$FilePath"
+                    sh 'cat $FilePath'
+                }
+                //To access credentials of type SSH with Private Key
+                withCredentials([sshUserPrivateKey(credentialsId:'jslave1',usernameVariable:'UserName',keyFileVariable:'SSHKEY')]){
+                    echo "$jslave1 $SSHKEY"
+                    sh 'echo "$jslave1 $SSHKEY"'
                 }
             }
         }
