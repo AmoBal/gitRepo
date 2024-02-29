@@ -6,7 +6,7 @@ pipeline{
     }
     parameters{
         //string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
-        boolean(name:'TESTB',defaultValue: true,description:'Toggle this value')
+        booleanParam(name:'TESTB',defaultValue: true,description:'Toggle this value')
     }
     /*triggers{
         //cron('* 23 * * *')
