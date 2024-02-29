@@ -34,7 +34,7 @@ pipeline{
                 stage('Test A'){
                     agent any
                     when{
-                        branch 'main'
+                        branch 'master'
                     }
                     steps{
                         sh '''
