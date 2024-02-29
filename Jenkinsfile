@@ -25,7 +25,7 @@ pipeline{
                 //To access credentials of type Secret text
                 withCredentials([string(credentialsId:'secretText',variable:'SecretText')]){
                     echo "$SecretText"
-                    sh 'cat "$SecretText"'
+                    sh 'echo "$SecretText"'
                 }
                 //To access credentials of type Secret File
                 /*withCredentials([file(credentialsId:'secretFile',variable:'FILE_PATH')]){
