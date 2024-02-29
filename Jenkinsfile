@@ -29,13 +29,8 @@ pipeline{
             }
         }
         stage('Parallel Test'){
-            /*agent{ 
-            label 'slave2'
-            }*/
+            agent any
             parallel{
-            agent{ 
-            label 'slave2'
-            }
             stage('Test A'){
             steps{
                 sh '''
