@@ -29,28 +29,37 @@ pipeline{
             }
         }
         stage('Parallel Test'){
-            //agent any
-                parallel{
-                    stage('Test A'){
-                        agent any
-                        steps{
-                            sh '''
-                            sleep 5
-                            echo "This is stage Test"
-                            echo "Running in slave2 executor"
-                            '''
+            //agent any - cannot use here while using parallel
+            parallel{
+                stage('Test A'){
+                    agent any
+                    when{
+                        not{
+                            branch 'main'
                         }
                     }
-                    stage('Test B'){
-                        agent any
-                        steps{
-                            script{
-                                echo "${env.ENV_TEST}"
-                            }
+                    steps{
+                        sh '''
+                        sleep 5
+                        echo "This is stage Test"
+                        echo "Running in slave2 executor"
+                        '''
+                    }
+                }
+                stage('Test B'){
+                    agent any
+                    when{
+                        //environment name:'ENV_TEST', value:'Test B'
+                        branch 'main'
+                    }
+                    steps{
+                        script{
+                        echo "${env.ENV_TEST}"
                         }
                     }
                 }
             }
+        }
         stage('Deploy'){
             agent any
             environment{
