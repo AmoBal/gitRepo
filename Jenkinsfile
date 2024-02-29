@@ -46,7 +46,7 @@ pipeline{
                 stage('Test B'){
                     agent any
                     when{
-                        expression{params.TESTB == true}
+                        expression{params.TESTB == false}
                         //environment name:'ENV_TEST', value:'Test B'
                         // not{
                         //     branch 'main'
