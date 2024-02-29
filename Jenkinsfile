@@ -42,8 +42,10 @@ pipeline{
             }
             }
             stage('Test B'){
+                steps{
                 script{
                     echo "${env.ENV_TEST}"
+                }
                 }
             }
         }
