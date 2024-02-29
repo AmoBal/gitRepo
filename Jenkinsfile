@@ -6,10 +6,11 @@ pipeline{
     }
     /*parameters{
         string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
-    }
-    triggers{
-        cron('* 23 * * *')
     }*/
+    triggers{
+        //cron('* 23 * * *')
+        pollSCM('* * * * *')
+    }
     stages{
         stage('Build'){
             agent {
