@@ -1,5 +1,5 @@
 pipeline{
-    agent none
+    agent any
     /*environment{
         ENV_BUILD = 'Build value'
         ENV_TEST = 'Test value'
