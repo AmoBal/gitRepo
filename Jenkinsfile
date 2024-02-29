@@ -29,9 +29,10 @@ pipeline{
             }
         }
         stage('Parallel Test'){
-            agent any
+            //agent any
                 parallel{
                     stage('Test A'){
+                        agent any
                         steps{
                             sh '''
                             sleep 5
@@ -41,6 +42,7 @@ pipeline{
                         }
                     }
                     stage('Test B'){
+                        agent any
                         steps{
                             script{
                                 echo "${env.ENV_TEST}"
