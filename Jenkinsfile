@@ -33,6 +33,9 @@ pipeline{
             label 'slave2'
             }*/
             parallel{
+            agent{ 
+            label 'slave2'
+            }
             stage('Test A'){
             steps{
                 sh '''
