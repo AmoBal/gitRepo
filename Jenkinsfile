@@ -32,6 +32,7 @@ pipeline{
             agent{ 
             label 'slave2'
             }
+            parallel{
             stage('Test A'){
             steps{
                 sh '''
@@ -47,6 +48,7 @@ pipeline{
                     echo "${env.ENV_TEST}"
                 }
                 }
+            }
             }
         }
         stage('Deploy'){
