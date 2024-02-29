@@ -4,10 +4,11 @@ pipeline{
         ENV_BUILD = 'Build value'
         ENV_TEST = 'Test value'
     }
-    /*parameters{
-        string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
+    parameters{
+        //string(name:'PARAM_STRING', defaultValue:'input_param',description:'This is a String Parameter')
+        boolean(name:'TESTB',defaultValue: true,description:'Toggle this value')
     }
-    triggers{
+    /*triggers{
         //cron('* 23 * * *')
         pollSCM('* * * * *')
     }*/
@@ -33,9 +34,7 @@ pipeline{
             parallel{
                 stage('Test A'){
                     agent any
-                    when{
-                        not{branch 'master'}
-                    }
+                    
                     steps{
                         sh '''
                         sleep 5
@@ -47,10 +46,11 @@ pipeline{
                 stage('Test B'){
                     agent any
                     when{
+                        expression{params.TESTB == true}
                         //environment name:'ENV_TEST', value:'Test B'
-                        not{
-                            branch 'main'
-                        }
+                        // not{
+                        //     branch 'main'
+                        // }
                     }
                     steps{
                         script{
