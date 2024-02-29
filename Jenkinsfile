@@ -28,9 +28,9 @@ pipeline{
                     sh 'cat "$SecretText"'
                 }
                 //To access credentials of type Secret File
-                withCredentials([file(credentialsId:'secretFile',variable:'FilePath')]){
-                    echo "$FilePath"
-                    sh 'cat $FilePath'
+                withCredentials([file(credentialsId:'secretFile',variable:'FILE_PATH')]){
+                    echo "$FILE_PATH"
+                    sh 'cat $FILE_PATH'
                 }
                 //To access credentials of type SSH with Private Key
                 withCredentials([sshUserPrivateKey(credentialsId:'jslave1',usernameVariable:'UserName',keyFileVariable:'SSHKEY')]){
