@@ -16,14 +16,13 @@ pipeline{
         stage('CREDS'){
             steps{
                 withCredentials([usernamePassword(credentialsId:'A_git', usernameVariable:'USERNAME', passwordVariable:'PASS')]){
-                    echo $USERNAME $PASS
+                    echo "$USERNAME $PASS"
                     sh '''
-                        echo $USERNAME $PASS
+                        echo "$USERNAME $PASS"
                     '''
                 }
             }
         }
-
         /*stage('Build'){
             agent {
                 label 'slave1'
