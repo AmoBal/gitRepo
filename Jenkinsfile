@@ -29,26 +29,26 @@ pipeline{
             }
         }
         stage('Parallel Test'){
-            agent {label 'slave2'}
-            parallel{
-            stage('Test A'){
-            steps{
-                sh '''
-                sleep 5
-                echo "This is stage Test"
-                echo "Running in slave2 executor"
-                '''
-            }
-            }
-            stage('Test B'){
-                steps{
-                script{
-                    echo "${env.ENV_TEST}"
+            agent any
+                parallel{
+                    stage('Test A'){
+                        steps{
+                            sh '''
+                            sleep 5
+                            echo "This is stage Test"
+                            echo "Running in slave2 executor"
+                            '''
+                        }
+                    }
+                    stage('Test B'){
+                        steps{
+                            script{
+                                echo "${env.ENV_TEST}"
+                            }
+                        }
+                    }
                 }
-                }
             }
-            }
-        }
         stage('Deploy'){
             agent any
             environment{
